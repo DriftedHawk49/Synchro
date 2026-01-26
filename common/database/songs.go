@@ -50,6 +50,18 @@ func (sdc *SongsDataController) GetSongs(ctx context.Context, filter map[string]
 
 }
 
+func (sdc *SongsDataController) IsPresent(ctx context.Context, videoId string) (bool, error) {
+	coll := sdc.cl.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
+
+	filter := bson.M{"videoId": videoId}
+	result, err := coll.CountDocuments(ctx, filter)
+	if err != nil {
+		return false, err
+	}
+
+	return result != 0, nil
+}
+
 func (sdc *SongsDataController) UpdateSong(ctx context.Context, song *models.Song) error {
 	coll := sdc.cl.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
 

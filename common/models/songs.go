@@ -12,4 +12,5 @@ type Song struct {
 	UpdatedAt      time.Time `bson:"updatedAt,omitempty"`      // latest sync time
 	LocationOnDisk string    `bson:"locationOnDisk,omitempty"` // location on disk if the song is downloaded
 	Downloaded     bool      `bson:"downloaded"`               // Whether the song has been downloaded
+	Synced         bool      `bson:"synced"`                   // whether the song is synced by Agent
 }

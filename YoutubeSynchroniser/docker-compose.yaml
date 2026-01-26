@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  ytsync:
+    image: ytsync:1.0.0
+    container_name: ytsync
+    environment:
+      MONGODB_URI: "enter mongodb URI here"
+      APIKEY: "Enter Youtube API v3 here"
+      INTERVAL: 30
+      CHANNEL_ID: "Enter youtube channel id here"
