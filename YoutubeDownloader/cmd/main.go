@@ -21,9 +21,9 @@ import (
 func init() {
 
 	// check if yt dlp is present in environment, if it is not, then panic
-	_, err := exec.Command("ytdlp", "--version").CombinedOutput()
+	_, err := exec.Command("yt-dlp", "--version").CombinedOutput()
 	if err != nil {
-		panic(fmt.Sprintf("ytdlp not found in path, it is required in path. err : %s", err.Error()))
+		panic(fmt.Sprintf("yt-dlp not found in path, it is required in path. err : %s", err.Error()))
 	}
 
 	muri := os.Getenv(gc.ENV_MONGODB_URI)

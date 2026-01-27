@@ -71,7 +71,7 @@ func (jd *jobDispatcher) downloadAndUpdateSong(s *models.Song) error {
 	// updating song
 	s.UpdatedAt = time.Now()
 	s.Downloaded = true
-	s.LocationOnDisk = path.Join(s.PlaylistName, s.Name)
+	s.LocationOnDisk = path.Join(s.PlaylistName, fmt.Sprintf("%s.mp3", s.VideoId))
 
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Minute)
 	defer cancelFunc()
