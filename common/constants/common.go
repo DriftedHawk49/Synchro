@@ -8,3 +8,9 @@ const (
 	DB_NAME         string = "synchro"
 	COLLECTION_NAME string = "songs"
 )
+
+// error formats
+
+const (
+	MONGO_URI_UNSET string = "mongodb uri not set, set %s as connection string for database"
+)
