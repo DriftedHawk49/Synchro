@@ -25,7 +25,6 @@ const (
 // Error constants
 const (
 	PAGE_ENDED       string = "all pages traversed" // can be used where request is being made when pagination has ended
-	MONGO_URI_UNSET  string = "mongodb uri not set, set %s as connection string for database"
 	APIKEY_UNSET     string = "Youtube API Key not set, set %s as APIKey for Youtube"
 	CHANNEL_ID_UNSET string = "Channel Id not set, set %s as ChannelId for Youtube"
 )

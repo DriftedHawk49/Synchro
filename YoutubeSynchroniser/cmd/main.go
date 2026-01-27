@@ -21,7 +21,7 @@ import (
 func init() {
 	muri := os.Getenv(cc.ENV_MONGODB_URI)
 	if muri == "" {
-		panic(fmt.Sprintf(constants.MONGO_URI_UNSET, cc.ENV_MONGODB_URI))
+		panic(fmt.Sprintf(cc.MONGO_URI_UNSET, cc.ENV_MONGODB_URI))
 	}
 
 	ak := os.Getenv(constants.ENV_APIKEY)
