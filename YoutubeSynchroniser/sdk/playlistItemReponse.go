@@ -35,7 +35,7 @@ func (pr *playlistItemResponse) Content() *youtube.PlaylistItemListResponse {
 }
 
 func (pr *playlistItemResponse) request() error {
-	req := pr.cl.List(constants.YT_PART).PlaylistId(pr.plId)
+	req := pr.cl.List(constants.YT_PART).PlaylistId(pr.plId).MaxResults(100)
 	if pr.data != nil {
 		// TODO: Check whether NextPageToken is empty in case of last page response
 		req.PageToken(pr.data.NextPageToken)
