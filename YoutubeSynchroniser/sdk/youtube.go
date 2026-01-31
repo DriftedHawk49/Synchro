@@ -35,6 +35,9 @@ func (ys *YoutubeSDK) GetPlaylists(channelId string) ([]*models.Playlist, error)
 	var err error
 	for err == nil {
 		err = pr.Do()
+		if pr.data == nil {
+			break
+		}
 		for _, res := range pr.data.Items {
 			result = append(result, &models.Playlist{
 				Title: res.Snippet.Title,
