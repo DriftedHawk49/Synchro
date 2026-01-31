@@ -73,4 +73,20 @@ func (sdc *SongsDataController) UpdateSong(ctx context.Context, song *models.Son
 	return nil
 }
 
+func (sdc *SongsDataController) SetSyncStatus(ctx context.Context, lod string) error {
+	coll := sdc.cl.Database(constants.DB_NAME).Collection(constants.COLLECTION_NAME)
+	fb := bson.M{"locationOnDisk": lod}
+	update := bson.M{
+		"$set": bson.M{
+			"synced": true,
+		},
+	}
+	_, err := coll.UpdateOne(ctx, fb, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Delete is not required

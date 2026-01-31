@@ -82,3 +82,18 @@ func TestThatSongIsUpdated(t *testing.T) {
 	assert.Nil(t, err, "error should be nil")
 	fmt.Println(songs)
 }
+
+func TestThatSongSyncStatusIsUpdated(t *testing.T) {
+	cl, err := New("mongodb://admin:abc123@192.168.1.111:27017/")
+	assert.Nil(t, err, "error should be nil")
+	assert.NotNil(t, cl, "client should not be nil")
+
+	sdc := NewSongsDataController(cl)
+
+	err = sdc.SetSyncStatus(context.Background(), "test/S83uQdGqBSY.mp3")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	assert.Nil(t, err, "error should be nil")
+
+}
