@@ -1,0 +1,12 @@
+version: "3.0"
+services:
+  ytsync:
+    image: agent:1.0.0
+    container_name: agent
+    restart: always
+    environment:
+      MONGODB_URI: "mongodb://admin:abc123@192.168.1.111:27017/"
+      INTERVAL: 5
+      BASE_DIR: "/app/songs"
+    volumes:
+      - "/mnt/hdd_160gb/music:/app/songs"
