@@ -63,7 +63,7 @@ func (jd *jobDispatcher) perform() {
 
 func (jd *jobDispatcher) downloadAndUpdateSong(s *models.Song) error {
 	ytd := ytdlp.New(constants.GC.RootDir)
-	err := ytd.Download(fmt.Sprintf(constants.YT_VIDEO_URL_FORMAT, s.VideoId), s.PlaylistName)
+	err := ytd.Download(s.VideoURL, s.PlaylistName)
 	if err != nil {
 		return fmt.Errorf("error while downloading song, check logs for reason of failure, song title : %s, playlist title : %s", s.Name, s.PlaylistName)
 	}

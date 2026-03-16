@@ -11,7 +11,7 @@ import (
 	cmodels "github.com/Synchro/common/models"
 )
 
-func InsertUniqueSongs(plws models.SongsWithPlaylist) error {
+func InsertUniqueSongs(pl *models.Playlist) error {
 	mcl, err := database.New(constants.GC.MongoDBURI)
 	if err != nil {
 		return err
@@ -19,11 +19,11 @@ func InsertUniqueSongs(plws models.SongsWithPlaylist) error {
 
 	scl := database.NewSongsDataController(mcl)
 
-	for _, pls := range plws.Songs {
+	for _, pls := range pl.Entries {
 		ctx, cancelFunc := context.WithTimeout(context.Background(), time.Duration(5)*time.Minute)
 		defer cancelFunc()
 
-		present, err := scl.IsPresent(ctx, pls.VideoId)
+		present, err := scl.IsPresent(ctx, pls.URL)
 		if err != nil {
 			return err
 		}
@@ -33,9 +33,9 @@ func InsertUniqueSongs(plws models.SongsWithPlaylist) error {
 		}
 
 		s := &cmodels.Song{
-			VideoId:      pls.VideoId,
+			VideoURL:     pls.URL,
 			Name:         pls.Title,
-			PlaylistName: plws.Title,
+			PlaylistName: pl.Title,
 		}
 
 		err = scl.InsertSong(ctx, s)

@@ -11,3 +11,10 @@ All three services depend on database for their assigned work and their function
 2. YoutubeSynchroniser : This will contain code for youtube synchronisation
 3. Agent : This will sync music with iPod.
 4. YoutubeDownloader : This will get data from database and download songs on disk and update their records
+
+## YT-DL COMMANDS
+1. To get Playlists/ Items in a playlist (just change URL to playlist URL) : 
+
+yt-dlp --flat-playlist -J "https://www.youtube.com/@ChannelName/playlists"
+
+2. 

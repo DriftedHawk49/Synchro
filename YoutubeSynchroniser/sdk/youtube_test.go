@@ -2,7 +2,6 @@ package sdk
 
 import (
 	"fmt"
-	"log/slog"
 	"testing"
 
 	"github.com/kr/pretty"
@@ -10,20 +9,18 @@ import (
 )
 
 func TestThatYoutubePlaylistsAreGet(t *testing.T) {
-	ys, err := New("dummyApiKey", slog.Default())
-	assert.Nil(t, err, "error should be nil")
+	ys := New()
 
-	ps, err := ys.GetPlaylists("channel id")
+	ps, err := ys.GetPlaylists("@shazam5705")
 	assert.Nil(t, err, "error should be nil")
 
 	fmt.Println(pretty.Sprint(ps))
 }
 
 func TestThatYoutubePlaylistSongsAreGet(t *testing.T) {
-	ys, err := New("dummy API key", slog.Default())
-	assert.Nil(t, err, "error should be nil")
+	ys := New()
 
-	ps, err := ys.GetPlaylistItems("playlistId")
+	ps, err := ys.GetPlaylistItems("https://www.youtube.com/playlist?list=PLepvTsiQW3Wxo5_dKQJvBgWMQ_LnMCiKi")
 	assert.Nil(t, err, "error should be nil")
 
 	fmt.Println(pretty.Sprint(ps))
