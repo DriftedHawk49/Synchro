@@ -34,6 +34,7 @@ func InsertUniqueSongs(pl *models.Playlist) error {
 
 		s := &cmodels.Song{
 			VideoURL:     pls.URL,
+			VideoId:      pls.ID,
 			Name:         pls.Title,
 			PlaylistName: pl.Title,
 		}
