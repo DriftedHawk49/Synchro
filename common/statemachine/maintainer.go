@@ -11,48 +11,51 @@ import (
 )
 
 type State struct {
-	ServiceName  string
-	State        string
-	JobId        string
-	JobStartedAt time.Time
+	serviceName  string
+	state        string
+	jobId        string
+	idleState    string
+	jobStartedAt time.Time
 	m            sync.RWMutex
 }
 
-func New(svcName string) *State {
+// Needs idle state to compare
+func New(svcName string, idleState string) *State {
 	return &State{
-		ServiceName: svcName,
+		serviceName: svcName,
 		m:           sync.RWMutex{},
+		idleState:   idleState,
 	}
 }
 
 func (s *State) Set(jobId string, state string) {
 	s.m.Lock()
 	defer s.m.Unlock()
-	s.State = state
-	s.JobId = jobId
-	s.JobStartedAt = time.Now()
+	s.state = state
+	s.jobId = jobId
+	s.jobStartedAt = time.Now()
 }
 
 // Will change state to IDLE
 func (s *State) UnSet() {
 	s.m.Lock()
 	defer s.m.Unlock()
-	s.State = "IDLE"
-	s.JobId = ""
-	s.JobStartedAt = time.Now()
+	s.state = s.idleState
+	s.jobId = ""
+	s.jobStartedAt = time.Now()
 
 }
 
 func (s *State) Busy() bool {
 	s.m.RLock()
 	defer s.m.RUnlock()
-	return s.State != "IDLE"
+	return s.state != s.idleState
 
 }
 
-// Returns State, JobId & JobStartedAt
-func (s *State) CurrentState() (string, string, time.Time) {
+// Returns Servicename, State, JobId & JobStartedAt
+func (s *State) CurrentState() (string, string, string, time.Time) {
 	s.m.RLock()
 	defer s.m.RUnlock()
-	return s.State, s.JobId, s.JobStartedAt
+	return s.serviceName, s.state, s.jobId, s.jobStartedAt
 }
