@@ -5,6 +5,7 @@ import (
 )
 
 type Song struct {
+	VideoURL       string    `bson:"videoURL,omitempty"`       // VideoURL of a youtube video
 	VideoId        string    `bson:"videoId,omitempty"`        // VideoId of a youtube video
 	Name           string    `bson:"title,omitempty"`          // Name/Title of song
 	PlaylistName   string    `bson:"playlistTitle,omitempty"`  // title of playlist song belongs to

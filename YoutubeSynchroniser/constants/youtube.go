@@ -5,9 +5,8 @@ import (
 )
 
 const (
-	ENV_APIKEY             string = "APIKEY"
 	ENV_CHECK_INTERVAL     string = "INTERVAL"
-	ENV_CHANNEL_ID         string = "CHANNEL_ID"
+	ENV_CHANNEL_NAME       string = "CHANNEL_NAME"
 	DEFAULT_CHECK_INTERVAL int    = 30 // Check every 30 minutes
 )
 
@@ -16,6 +15,11 @@ var (
 	GC      models.Config = models.Config{
 		CheckInterval: DEFAULT_CHECK_INTERVAL,
 	}
+)
+
+// formats
+const (
+	YT_CHANNEL_FORMAT string = "https://www.youtube.com/%s/playlists"
 )
 
 const (
